@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Basketball Game</title>
+    <!-- Load dependencies from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        #game-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+        #score {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        #power-meter {
+            position: fixed;
+            top: 50%;
+            right: 50px;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 2px solid white;
+            z-index: 1000;
+        }
+        #power-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background: linear-gradient(to top, #00ff00, #ff0000);
+            transition: height 0.05s linear;
+        }
+        #perfect-release {
+            position: absolute;
+            left: -5px;
+            width: 30px;
+            height: 2px;
+            background-color: #00ff00;
+            z-index: 1001;
+        }
+        #release-zone {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 255, 0, 0.2);
+            z-index: 999;
+        }
+        #instructions {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 1000;
+        }
+        #instructions h2 {
+            margin-top: 0;
+        }
+        #instructions p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container"></div>
+    <div id="score">Score: 0</div>
+    <div id="power-meter">
+        <div id="power-fill"></div>
+        <div id="perfect-release"></div>
+        <div id="release-zone"></div>
+    </div>
+    <div id="instructions">
+        <h2>How to Play</h2>
+        <p>Use WASD or Arrow Keys to move</p>
+        <p>Click and hold to power up your shot</p>
+        <p>Release when the meter hits the green zone</p>
+        <p>Press SPACE to reset the ball</p>
+        <p>Click anywhere to start</p>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html> 
